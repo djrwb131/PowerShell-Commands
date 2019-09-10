@@ -1,8 +1,8 @@
-﻿#Arguments are passed using $args array
+﻿<# NOTES:
 
-<#
 ------------------
-Arguments are passed using $args array.
+Arguments are passed using $args array. The commandline arguments start at index 0!!
+
 ------------------
 There is also a param() function which can better define arguments:
 Param(
@@ -19,12 +19,14 @@ Switch (<test-value>)
 {
     <condition> {<action>}
     <condition> {<action>}
-}
+}                                                                                                                                 
+
 ------------------
 #>
-switch ($args[1]) {
+switch ($args[0]) {
     "-list" {
         foreach ($EventLogName in (get-childitem HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\)) {
-            echo $Name.pschildname;
+            echo $EventLogName.pschildname;
             }
     }
+}
